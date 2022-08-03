@@ -1,0 +1,81 @@
+<!--templates/blog/blog_list.html-->
+{% extends 'BlogApp/base.html' %}
+
+{% load static %}
+{% block container %}
+
+
+{% if request.user.is_authenticated %}
+
+    <p id="userid"  style="visibility: hidden">{{request.user}}</p>
+
+{% endif %}
+
+<div align="right">
+            <a class="alert btn-primary " href="{% url 'logout' %}">logout</a>
+        </div><br>
+<div class="row">
+
+
+{% for posts in Allposts %}
+    <div class="col-sm-6 mt-4">
+        <div class="card">
+            <div class="card-body">
+                <button id="postid"  style="visibility: hidden" value="{{ posts.id }}"></button>
+                <h3 class="card-title">{{ posts.title }}</h3>
+                <h6 class="card-title">{{ posts.created_on }}</h6>
+                <div class="col-md-12 col-lg-6 tm-section-image-container tm-img-right-container">
+                    <img src="{{posts.postImg.url}}"alt="Image" class="img-fluid tm-img-right">
+
+                </div>
+                <p class="card-text">{{ posts.content | truncatechars:50 }}</p>
+
+                <a href="/blogpost/{{posts.id}}" class="btn btn-primary">Read more</a>
+
+              <form method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <div class="like_dislike">
+                <button name="like_value" class="btn btn-primary" id="like" value="Like" >Like</button>
+<!--                <button name="dislike_value" class="btn btn-primary" id="dislike" value="Dislike"> Dislike </button>-->
+              </div>
+              </form>
+
+          </div>
+        </div>
+    </div>
+
+
+
+    {% endfor %}
+<script src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+<script>
+$(document).ready(function() {
+$('.like_dislike').click(function(){
+    $.ajax({
+             url: "{% url 'like_dislike' %}",
+             type: "POST",
+             data: {
+             'postid': $("#postid").val(),
+
+             'like_dislike':$("#like").val(),
+             'csrfmiddlewaretoken': '{{ csrf_token }}'
+             },
+             dataType: "json",
+             success: function(data) {
+              console.log(data);
+              console.log(data.postid);
+              },
+            error: function(data){
+                alert('does not like/dislike function work!!!')
+            }
+        });
+
+  })
+  });
+</script>
+</div>
+
+
+{% endblock %}

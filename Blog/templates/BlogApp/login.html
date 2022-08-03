@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% load static %}
+{% csrf_token %}
+
+    <head>
+        <title>Something Different</title>
+
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+        <link rel="stylesheet" href="{% static 'css/reg.css'%}">
+        <link rel="stylesheet" href="{% static 'css/login.css'%}">
+
+
+
+<!--                <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">-->
+<!--        <meta name="google" content="notranslate" />-->
+<!--        <meta name="viewport" content="width=device-width, initial-scale=1" />-->
+<!--        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"-->
+<!--            crossorigin="anonymous" />-->
+    </head>
+
+    <body>
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+    <h2 href="" class="active"> Sign In </h2>
+    <h2 onclick="window.location.href='/signup'" class="inactive underlineHover">Sign Up </h2>
+    <strong>Hi User!</strong> {{error}}.
+    <!-- Icon -->
+
+
+    <!-- Login Form -->
+    <form method="post">
+      {% csrf_token %}
+      <input type="text" id="username" class="fadeIn second" name="username" placeholder="login">
+      <input type="password" id="password1" class="fadeIn third" name="password" placeholder="password"><br>
+     <!-- <input type="radio" id="publisher" name="UserType" value="publisher">
+      <label for="publisher">Login as Publisher</label>
+      <input type="radio" id="reader" name="UserType" value="reader">
+      <label for="reader">Login as Reader</label><br> -->
+      <input type="submit" class="fadeIn fourth" value="Log In">
+    </form>
+
+    <!-- Remind Passowrd -->
+<!--    <div id="formFooter">-->
+<!--      <a class="underlineHover" href="#">Forgot Password?</a>-->
+<!--    </div>-->
+
+  </div>
+</div>
+</body>
+</html>

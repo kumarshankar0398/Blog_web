@@ -1,0 +1,35 @@
+<!--templates/blog/blog_detail.html-->
+{% extends 'BlogApp/base.html' %}
+{% block container %}
+
+<div align="right">
+            <a class="alert btn-primary " href="{% url 'logout' %}">logout</a>
+        </div><br><br>
+<div class="row">
+    <div class="card">
+        <h5 class="card-header">{{ post.title }} by <span class="text-primary">{{ post.author }}</span> at <span>{{post.created_on}}</span></h5>
+        <div class="card-body">
+            <div class="col-md-12 col-lg-6 tm-section-image-container tm-img-right-container">
+                    <img src="{{post.postImg.url}}"alt="Image" class="img-fluid tm-img-right">
+                </div>
+            <h5 class="card-title">Published: {{ post.updated_on }}</h5>
+            <p class="card-text">{{ post.content }}</p>
+
+            <a href="#" onClick="document.getElementById('likebutton').submit()" class="btn btn-primary">Like </a>
+            <a href="#" onClick="document.getElementById('dislikebutton').submit()" class="btn btn-primary">Dislike </a>
+
+
+<!--            <form id="likebutton" method="POST" action="/postpreference/{{post.id}}/1">-->
+<!--                {% csrf_token %}-->
+<!--                <input type="hidden">-->
+<!--            </form>-->
+
+<!--            <form id="dislikebutton" method="POST" action="/postpreference/{{post.id}}/2">-->
+<!--                {% csrf_token %}-->
+<!--                <input type="hidden">-->
+<!--            </form>-->
+
+        </div>
+    </div>
+</div>
+{% endblock %}

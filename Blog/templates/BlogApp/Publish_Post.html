@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Employee Record</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+
+
+<div class="container">
+    <div class="jumbotron">
+        <body>
+<form  method="post" enctype="multipart/form-data" action="">
+    {% csrf_token %}
+    <div class="container">
+        <br>
+        <h2 class="text-center alert alert-info">Publish Your Post</h2>
+        <div align="right">
+            <a class="alert btn-primary " href="{% url 'logout' %}">logout</a>
+        </div><br><br>
+
+            <div class="form-group">
+                <label for="PostTitle">Post Title</label>
+                <input type="text" pattern="^[-a-zA-Z\s]*$" class="form-control" name="title" id="PostTitle" aria-describedby="PostTitleHelp" placeholder="Enter Your Post Title">
+            </div>
+
+            <div class="form-group">
+                <label for="PostContent">Post Content</label>
+                <textarea  class="form-control" name="content" id="PostContent" aria-describedby="PostContentHelp" placeholder="Please Write Your Content"></textarea>
+            </div>
+            <div class="form-group">
+                <input type="radio" id="Draft" name="status" value="0">
+                  <label for="Draft">Draft</label>
+                <input type="radio" id="Publish" name="status" value="1">
+                  <label for="Publish">Publish</label><br>
+            </div>
+
+
+            <label for="postImg">Select image:</label>
+            <input type="file" id="postImg" name="img">
+        <br>
+            <input type="submit" class="btn btn-success btn-lg" value="Save">
+    </div>
+</form>
+
+
+
+</body>
+    </div>
+</div>
+</html>

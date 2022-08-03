@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+{% load static %}
+{% csrf_token %}
+
+    <head>
+        <title>Something Different</title>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+        <meta name="google" content="notranslate" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+            crossorigin="anonymous" />
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+        <link rel="stylesheet" href="{% static 'css/reg.css'%}">
+        <link rel="stylesheet" href="{% static 'css/login.css'%}">
+    </head>
+
+    <body>
+ <section class="vh-100 bg-image" style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+
+              <form method="post" id="RegForm" >
+                {% csrf_token %}
+                <div class="form-outline mb-4">
+                  <input type="text" pattern="^[-a-zA-Z\s]*$" minlength="3" id="username" name="username" class="form-control form-control-lg" />
+                  <label class="form-label" for="username">Your Name</label>
+                  {{error}}
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="text" pattern="/([a-zA-Z0-9]+)([\_\.\-{1}])?([a-zA-Z0-9]+)\@([a-zA-Z0-9]+)([\.])([a-zA-Z\.]+)/g" id="email" name="email" class="form-control form-control-lg" />
+                  <label class="form-label" for="email">Your Email</label>
+                  {{error}}
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="password" pattern="[a-zA-Z0-9]{8,}" id="password1" name="password1" class="form-control form-control-lg" />
+                  <label class="form-label" for="password1">Password</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <input type="password" pattern="[a-zA-Z0-9]{8,}" id="password2" name="password2" class="form-control form-control-lg" />
+                  <label class="form-label" for="password2">Repeat your password</label>
+                  {{error}}
+                </div>
+                <div class="form-outline mb-4">
+                  <input type="radio" id="Publisher" name="UserType" value="Publisher">
+                  <label for="Publisher">Register as Publisher</label>
+                  <input type="radio" id="Reader" name="UserType" value="Reader">
+                  <label for="Reader">Register as Reader</label><br>
+                  {{error}}
+                </div>
+
+<!--                <div class="form-check d-flex justify-content-center mb-5">-->
+<!--                  <input-->
+<!--                    class="form-check-input me-2"-->
+<!--                    type="checkbox"-->
+<!--                    value=""-->
+<!--                    id="form2Example3cg"-->
+<!--                  />-->
+<!--                  <label class="form-check-label" for="form2Example3g">-->
+<!--                    I agree all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>-->
+<!--                  </label>-->
+<!--                </div>-->
+
+                <div class="d-flex justify-content-center">
+                  <input type="submit" value="Register" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" ></input>
+                </div>
+
+                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="{% url 'login' %}" class="fw-bold text-body"><u>Login here</u></a></p>
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+    </body>
+</html>
+
